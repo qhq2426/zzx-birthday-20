@@ -152,12 +152,12 @@
       function stellarColor() {
         const chance = Math.random();
         let palette;
-        if (['outer', 'lobe', 'notch', 'tip'].includes(kind)) palette = chance < .37 ? white : chance < .62 ? gold : red;
-        else if (kind === 'middle') palette = chance < .3 ? white : chance < .5 ? gold : red;
-        else if (kind === 'core') palette = chance < .2 ? white : chance < .4 ? gold : red;
-        else if (kind === 'far') palette = chance < .48 ? white : chance < .75 ? gold : red;
-        else if (kind === 'mid') palette = chance < .4 ? white : chance < .65 ? gold : red;
-        else palette = chance < .48 ? white : chance < .8 ? gold : red;
+        if (['outer', 'lobe', 'notch', 'tip'].includes(kind)) palette = chance < .38 ? white : chance < .68 ? gold : red;
+        else if (kind === 'middle') palette = chance < .34 ? white : chance < .62 ? gold : red;
+        else if (kind === 'core') palette = chance < .26 ? white : chance < .5 ? gold : red;
+        else if (kind === 'far') palette = chance < .52 ? white : chance < .84 ? gold : red;
+        else if (kind === 'mid') palette = chance < .44 ? white : chance < .76 ? gold : red;
+        else palette = chance < .45 ? white : chance < .8 ? gold : red;
         return palette[Math.floor(Math.random() * palette.length)];
       }
       for (let index = 0; index < count; index++) {
@@ -176,7 +176,7 @@
         positions.set([point.x, point.y, point.z], index * 3);
         const color = stellarColor();
         colors.set([color.r, color.g, color.b], index * 3);
-        sizes[index] = ['outer', 'lobe', 'notch', 'tip'].includes(kind) ? .55 + Math.random() * 1.3 : kind === 'middle' ? .38 + Math.random() * .82 : kind === 'core' ? .2 + Math.random() * .42 : kind === 'far' ? .1 + Math.random() * .3 : kind === 'mid' ? .28 + Math.random() * .82 : 1.15 + Math.random() * 1.8;
+        sizes[index] = ['outer', 'lobe', 'notch', 'tip'].includes(kind) ? .42 + Math.random() * 1.08 : kind === 'middle' ? .28 + Math.random() * .64 : kind === 'core' ? .16 + Math.random() * .38 : kind === 'far' ? .08 + Math.random() * .24 : kind === 'mid' ? .22 + Math.random() * .62 : .72 + Math.random() * 1.3;
         seeds[index] = Math.random() * 100;
       }
       geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -187,11 +187,12 @@
       const material = new THREE.ShaderMaterial({
         transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
         uniforms: { uTime: { value: 0 }, uPixel: { value: renderer.getPixelRatio() }, uKind: { value: heartKind ? 1 : kind === 'near' ? 2 : 0 }, uOpacity: { value: 1 } },
-        vertexShader: `uniform float uTime;uniform float uPixel;uniform float uKind;attribute vec3 aColor;attribute float aSize;attribute float aSeed;varying vec3 vColor;varying float vTwinkle;void main(){float motion=uKind>.5?.075:.18;vec3 p=position+vec3(sin(uTime*.23+aSeed),cos(uTime*.18+aSeed*1.7),sin(uTime*.16+aSeed*.7))*motion;vec4 mv=modelViewMatrix*vec4(p,1.);gl_PointSize=aSize*uPixel*(48./-mv.z);gl_Position=projectionMatrix*mv;vColor=aColor;vTwinkle=.72+.28*sin(uTime*.58+aSeed*2.35);}`,
+        vertexShader: `uniform float uTime;uniform float uPixel;uniform float uKind;attribute vec3 aColor;attribute float aSize;attribute float aSeed;varying vec3 vColor;varying float vTwinkle;void main(){float motion=uKind>.5?.075:.18;vec3 p=position+vec3(sin(uTime*.23+aSeed),cos(uTime*.18+aSeed*1.7),sin(uTime*.16+aSeed*.7))*motion;vec4 mv=modelViewMatrix*vec4(p,1.);float perspective=uKind>.5?60.:48.;gl_PointSize=aSize*uPixel*(perspective/-mv.z);gl_Position=projectionMatrix*mv;vColor=aColor;vTwinkle=.72+.28*sin(uTime*.58+aSeed*2.35);}`,
         fragmentShader: `uniform float uOpacity;varying vec3 vColor;varying float vTwinkle;void main(){float d=distance(gl_PointCoord,vec2(.5));float halo=smoothstep(.52,.08,d);float core=smoothstep(.18,0.,d);float a=(halo*.4+core*.65)*uOpacity*vTwinkle;gl_FragColor=vec4(vColor*(halo*.72+core*1.18)*vTwinkle,a);}`
       });
       const points = new THREE.Points(geometry, material);
       points.renderOrder = 0;
+      points.frustumCulled = true;
       (heartKind ? heartGroup : scene).add(points);
       return material;
     }
@@ -201,45 +202,57 @@
       const colors = new Float32Array(count * 3);
       const sizes = new Float32Array(count);
       const seeds = new Float32Array(count);
+      const alphas = new Float32Array(count);
       const white = [new THREE.Color('#ffffff'), new THREE.Color('#fff7e6')];
       const gold = [new THREE.Color('#ffd700'), new THREE.Color('#ffcc66')];
       const red = [new THREE.Color('#ff3355'), new THREE.Color('#ff0033')];
       for (let index = 0; index < count; index++) {
-        const point = new THREE.Vector3().randomDirection().multiplyScalar(9 + Math.random() * 20);
+        const layerChance = Math.random();
+        const layer = layerChance < .58 ? 'far' : layerChance < .9 ? 'mid' : 'near';
+        const radius = layer === 'far' ? 18 + Math.random() * 30 : layer === 'mid' ? 9 + Math.random() * 14 : 5 + Math.random() * 9;
+        const point = new THREE.Vector3().randomDirection().multiplyScalar(radius);
         point.y *= .76;
         positions.set([point.x, point.y, point.z], index * 3);
         const chance = Math.random();
         const palette = chance < .56 ? white : chance < .9 ? gold : red;
         const color = palette[Math.floor(Math.random() * palette.length)];
         colors.set([color.r, color.g, color.b], index * 3);
-        sizes[index] = 3.4 + Math.random() * 4.8;
+        sizes[index] = layer === 'far' ? 1.6 + Math.random() * 2.5 : layer === 'mid' ? 2.5 + Math.random() * 3.8 : 4.2 + Math.random() * 4.2;
+        alphas[index] = layer === 'far' ? .34 + Math.random() * .22 : layer === 'mid' ? .5 + Math.random() * .25 : .66 + Math.random() * .24;
         seeds[index] = Math.random() * 100;
       }
       geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
       geometry.setAttribute('aColor', new THREE.BufferAttribute(colors, 3));
       geometry.setAttribute('aSize', new THREE.BufferAttribute(sizes, 1));
       geometry.setAttribute('aSeed', new THREE.BufferAttribute(seeds, 1));
+      geometry.setAttribute('aAlpha', new THREE.BufferAttribute(alphas, 1));
       const material = new THREE.ShaderMaterial({
         transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
         uniforms: { uTime: { value: 0 }, uPixel: { value: renderer.getPixelRatio() } },
-        vertexShader: `uniform float uTime;uniform float uPixel;attribute vec3 aColor;attribute float aSize;attribute float aSeed;varying vec3 vColor;varying float vTwinkle;void main(){vec3 p=position+vec3(sin(uTime*.1+aSeed),cos(uTime*.08+aSeed*1.4),sin(uTime*.07+aSeed*.6))*.12;vec4 mv=modelViewMatrix*vec4(p,1.);gl_PointSize=aSize*uPixel*(86./-mv.z);gl_Position=projectionMatrix*mv;vColor=aColor;vTwinkle=.76+.24*sin(uTime*.72+aSeed*2.1);}`,
-        fragmentShader: `varying vec3 vColor;varying float vTwinkle;void main(){vec2 uv=abs(gl_PointCoord*2.-1.);float horizontal=exp(-uv.y*31.)*exp(-uv.x*1.9);float vertical=exp(-uv.x*31.)*exp(-uv.y*1.9);float core=exp(-length(uv)*9.2);float glow=exp(-length(uv)*3.)*.32;float a=min(1.,horizontal+vertical+core+glow)*vTwinkle;gl_FragColor=vec4(vColor*(a+core),a*.9);}`
+        vertexShader: `uniform float uTime;uniform float uPixel;attribute vec3 aColor;attribute float aSize;attribute float aSeed;attribute float aAlpha;varying vec3 vColor;varying float vTwinkle;varying float vAlpha;void main(){vec3 p=position+vec3(sin(uTime*.1+aSeed),cos(uTime*.08+aSeed*1.4),sin(uTime*.07+aSeed*.6))*.12;vec4 mv=modelViewMatrix*vec4(p,1.);gl_PointSize=aSize*uPixel*(100./-mv.z);gl_Position=projectionMatrix*mv;vColor=aColor;vAlpha=aAlpha;vTwinkle=.7+.3*sin(uTime*.62+aSeed*2.1);}`,
+        fragmentShader: `varying vec3 vColor;varying float vTwinkle;varying float vAlpha;void main(){vec2 uv=abs(gl_PointCoord*2.-1.);float horizontal=exp(-uv.y*31.)*exp(-uv.x*1.9);float vertical=exp(-uv.x*31.)*exp(-uv.y*1.9);float core=exp(-length(uv)*9.2);float glow=exp(-length(uv)*3.)*.28;float shape=min(1.,horizontal+vertical+core+glow);float a=shape*vTwinkle*vAlpha;gl_FragColor=vec4(vColor*(shape*.82+core*.72)*vTwinkle,a);}`
       });
       const points = new THREE.Points(geometry, material);
       points.renderOrder = 1;
+      points.frustumCulled = true;
       scene.add(points);
       return material;
     }
-    const heartOuterMaterial = particleVolume(1800, 'outer');
-    const heartLobeMaterial = particleVolume(780, 'lobe');
-    const heartNotchMaterial = particleVolume(380, 'notch');
-    const heartTipMaterial = particleVolume(480, 'tip');
-    const heartMiddleMaterial = particleVolume(720, 'middle');
-    const heartCoreMaterial = particleVolume(180, 'core');
-    const farStarMaterial = particleVolume(3000, 'far');
-    const midStarMaterial = particleVolume(1200, 'mid');
-    const nearStarMaterial = particleVolume(90, 'near');
-    const crossStarMaterial = crossStarField(90);
+    const particleScale = innerWidth < 760 || navigator.hardwareConcurrency < 6 ? .8 : 1;
+    const budget = value => Math.round(value * particleScale);
+    const heartOuterMaterial = particleVolume(budget(8000), 'outer');
+    const heartLobeMaterial = particleVolume(budget(2800), 'lobe');
+    const heartNotchMaterial = particleVolume(budget(1600), 'notch');
+    const heartTipMaterial = particleVolume(budget(1800), 'tip');
+    const heartMiddleMaterial = particleVolume(budget(7000), 'middle');
+    const heartCoreMaterial = particleVolume(budget(3000), 'core');
+    const farStarMaterial = particleVolume(budget(10000), 'far');
+    const midStarMaterial = particleVolume(budget(5000), 'mid');
+    const nearStarMaterial = particleVolume(budget(500), 'near');
+    farStarMaterial.uniforms.uOpacity.value = .42;
+    midStarMaterial.uniforms.uOpacity.value = .68;
+    nearStarMaterial.uniforms.uOpacity.value = .86;
+    const crossStarMaterial = crossStarField(Math.max(300, budget(420)));
 
     const composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
