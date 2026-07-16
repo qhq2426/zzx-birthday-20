@@ -6,13 +6,18 @@
   <meta name="theme-color" content="#020203">
   <title>昕蛋的照片爱心</title>
   <style>
-    *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#020203;color:#fff8ed;font-family:"Microsoft YaHei",system-ui,sans-serif}.webgl{position:fixed;inset:0;width:100%;height:100%;touch-action:none}.overlay{position:fixed;z-index:2;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 48%,transparent 42%,rgba(0,0,0,.5) 100%)}.brand{position:absolute;top:clamp(22px,4vw,52px);left:50%;width:100%;transform:translateX(-50%);text-align:center;text-shadow:0 2px 20px #000}.brand h1{margin:0;font:500 clamp(1.8rem,4.4vw,4.2rem)/1.1 Georgia,"Times New Roman",serif;letter-spacing:.13em}.brand p{margin:10px 0 0;color:rgba(255,248,237,.7);font:10px ui-monospace,monospace;letter-spacing:.25em}.message{position:absolute;right:clamp(18px,4vw,58px);bottom:clamp(25px,5vw,57px);width:min(295px,65vw);padding:11px 0 11px 15px;border-left:1px solid rgba(255,201,105,.75);color:rgba(255,248,237,.82);font-size:12px;line-height:1.8;opacity:0;transform:translateY(8px);transition:.8s;text-shadow:0 1px 10px #000}.message.show{opacity:1;transform:none}.message b{display:block;color:#ffcf69;font:10px ui-monospace,monospace;letter-spacing:.18em}.tools{position:absolute;left:clamp(15px,3vw,37px);bottom:clamp(15px,3vw,37px);display:flex;gap:10px;pointer-events:auto}.tool{width:42px;height:42px;border:1px solid rgba(255,248,237,.38);border-radius:50%;display:grid;place-items:center;background:rgba(4,3,6,.42);backdrop-filter:blur(8px);color:#ffcf69;cursor:pointer;transition:.2s}.tool:hover,.tool.active{background:#ffcf69;color:#2a1420;box-shadow:0 0 18px rgba(255,201,105,.48)}.hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);color:rgba(255,248,237,.58);font-size:10px;letter-spacing:.15em;white-space:nowrap;text-shadow:0 1px 9px #000}.start{position:fixed;z-index:4;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 48%,rgba(117,18,47,.25),#050407 57%,#010102);transition:opacity .85s,visibility .85s}.start.hide{opacity:0;visibility:hidden}.start-box{text-align:center;padding:28px}.start small{display:block;color:#ffcf69;font:11px ui-monospace,monospace;letter-spacing:.24em}.start h2{margin:18px 0 13px;font:500 clamp(2.6rem,8vw,6.4rem)/1.09 Georgia,"Times New Roman",serif;letter-spacing:.08em}.start p{margin:0 0 28px;color:rgba(255,248,237,.67);font-size:14px}.start button{padding:14px 25px;border:1px solid rgba(255,207,105,.85);border-radius:100px;background:rgba(14,7,12,.58);color:#fff8ed;letter-spacing:.13em;cursor:pointer;transition:.2s}.start button:hover{background:#ffcf69;color:#321724;transform:translateY(-3px)}@media(max-width:600px){.brand{top:30px}.brand p{font-size:8px}.message{font-size:10px}.hint{bottom:18px;font-size:9px}.tool{width:38px;height:38px}}
+    *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#020203;color:#fff8ed;font-family:"Microsoft YaHei",system-ui,sans-serif}.webgl{position:fixed;inset:0;width:100%;height:100%;touch-action:none}.overlay{position:fixed;z-index:2;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 48%,transparent 42%,rgba(0,0,0,.5) 100%)}.brand{position:absolute;top:clamp(22px,4vw,52px);left:50%;width:100%;transform:translateX(-50%);text-align:center;text-shadow:0 2px 20px #000}.brand h1{margin:0;font:500 clamp(1.8rem,4.4vw,4.2rem)/1.1 Georgia,"Times New Roman",serif;letter-spacing:.13em}.brand p{margin:10px 0 0;color:rgba(255,248,237,.7);font:10px ui-monospace,monospace;letter-spacing:.25em}.message{position:absolute;right:clamp(18px,4vw,58px);bottom:clamp(25px,5vw,57px);width:min(295px,65vw);padding:11px 0 11px 15px;border-left:1px solid rgba(255,201,105,.75);color:rgba(255,248,237,.82);font-size:12px;line-height:1.8;opacity:0;transform:translateY(8px);transition:.8s;text-shadow:0 1px 10px #000}.message.show{opacity:1;transform:none}.message b{display:block;color:#ffcf69;font:10px ui-monospace,monospace;letter-spacing:.18em}.tools{position:absolute;left:clamp(15px,3vw,37px);bottom:clamp(15px,3vw,37px);display:flex;gap:10px;pointer-events:auto}.tool{width:42px;height:42px;border:1px solid rgba(255,248,237,.38);border-radius:50%;display:grid;place-items:center;background:rgba(4,3,6,.42);backdrop-filter:blur(8px);color:#ffcf69;cursor:pointer;transition:.2s}.tool:hover,.tool.active{background:#ffcf69;color:#2a1420;box-shadow:0 0 18px rgba(255,201,105,.48)}.hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);color:rgba(255,248,237,.58);font-size:10px;letter-spacing:.15em;white-space:nowrap;text-shadow:0 1px 9px #000}.debug{position:absolute;top:18px;right:18px;padding:8px 10px;border:1px solid rgba(255,201,105,.65);background:rgba(10,4,8,.7);font:10px ui-monospace,monospace;letter-spacing:.12em;color:#ffcf69;opacity:0;transition:.25s}.debug.show{opacity:1}.start{position:fixed;z-index:4;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 48%,rgba(117,18,47,.25),#050407 57%,#010102);transition:opacity .85s,visibility .85s}.start.hide{opacity:0;visibility:hidden}.start-box{text-align:center;padding:28px}.start small{display:block;color:#ffcf69;font:11px ui-monospace,monospace;letter-spacing:.24em}.start h2{margin:18px 0 13px;font:500 clamp(2.6rem,8vw,6.4rem)/1.09 Georgia,"Times New Roman",serif;letter-spacing:.08em}.start p{margin:0 0 28px;color:rgba(255,248,237,.67);font-size:14px}.start button{padding:14px 25px;border:1px solid rgba(255,207,105,.85);border-radius:100px;background:rgba(14,7,12,.58);color:#fff8ed;letter-spacing:.13em;cursor:pointer;transition:.2s}.start button:hover{background:#ffcf69;color:#321724;transform:translateY(-3px)}@media(max-width:600px){.brand{top:30px}.brand p{font-size:8px}.message{font-size:10px}.hint{bottom:18px;font-size:9px}.tool{width:38px;height:38px}}
   </style>
 </head>
 <body>
   <canvas class="webgl" id="scene"></canvas>
-  <section class="overlay"><header class="brand"><h1>昕蛋 · 二十岁生日快乐</h1><p>07 · 17 · A HEART MADE OF MEMORIES</p></header><aside class="message" id="message"><b>TO 郑梓昕</b>远看，是一颗由回忆和星光组成的心。点击任意一张照片，让那一刻停在眼前。<br>—— QHQ</aside><div class="tools"><button class="tool" id="music" aria-label="播放或暂停音乐">♪</button><button class="tool" id="reset" aria-label="返回爱心全景">↻</button></div><div class="hint">拖动环绕爱心 · 滚轮推进 · 点击照片查看</div></section>
-  <section class="start" id="start"><div class="start-box"><small>20 YEARS OF XINDAN</small><h2>一颗由回忆<br>组成的心</h2><p>点击开启，九张照片将聚成一颗爱心。</p><button id="enter">开启礼物</button></div></section>
+  <section class="overlay">
+    <header class="brand"><h1>昕蛋 · 二十岁生日快乐</h1><p>07 · 17 · A VOLUME MADE OF MEMORIES</p></header>
+    <aside class="message" id="message"><b>TO 郑梓昕</b>这一次，回忆不只是一张平面照片。它们在星光里有了前后、有了体积，也有了只属于你的心。点击任意照片，让那一刻停在眼前。<br>—— QHQ</aside>
+    <div class="tools"><button class="tool" id="music" aria-label="播放或暂停音乐">♫</button><button class="tool" id="reset" aria-label="返回爱心全景">↺</button></div>
+    <div class="hint">拖动环绕爱心 · 滚轮推进 · 点击照片查看 · T 键三维测试</div><div class="debug" id="debug">DEBUG · 360° HEART VOLUME</div>
+  </section>
+  <section class="start" id="start"><div class="start-box"><small>20 YEARS OF XINDAN</small><h2>一颗由回忆<br>组成的立体心</h2><p>点击开启，九张照片将在三维星光里聚成爱心。</p><button id="enter">开启礼物</button></div></section>
   <audio id="birthday-audio" src="virtual.flac" loop preload="metadata"></audio>
   <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.164.1/build/three.module.js","three/addons/":"https://unpkg.com/three@0.164.1/examples/jsm/"}}</script>
   <script type="module">
@@ -24,40 +29,258 @@
     import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
 
     const canvas = document.querySelector('#scene');
-    const scene = new THREE.Scene(); scene.fog = new THREE.FogExp2(0x020203, .028);
-    const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, .1, 80); camera.position.set(0, .1, 22);
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias:false, powerPreference:'high-performance' }); renderer.setPixelRatio(Math.min(devicePixelRatio,1.55)); renderer.setSize(innerWidth,innerHeight); renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=.94; renderer.outputColorSpace=THREE.SRGBColorSpace;
-    const controls = new OrbitControls(camera,canvas); controls.enableDamping=true; controls.dampingFactor=.055; controls.enablePan=false; controls.minDistance=7; controls.maxDistance=30; controls.target.set(0,0,0);
-    const dustGroup = new THREE.Group(); scene.add(dustGroup);
-    const raycaster = new THREE.Raycaster(), pointer = new THREE.Vector2(), photoMeshes = [], cards = [];
-    const heartPositions = [new THREE.Vector3(-3.5,1.7,.4),new THREE.Vector3(0,2.8,-.3),new THREE.Vector3(3.5,1.7,.35),new THREE.Vector3(-4.1,-.25,-.5),new THREE.Vector3(-2.15,-1.55,.7),new THREE.Vector3(0,-3.55,-.2),new THREE.Vector3(2.15,-1.55,-.65),new THREE.Vector3(4.1,-.25,.45),new THREE.Vector3(0,.15,1.2)];
-    const heartRotations = [[-.22,.32,-.12],[.12,-.28,.08],[-.18,-.35,.14],[.24,.46,-.15],[-.32,.18,.2],[.1,-.2,-.08],[-.18,.3,-.16],[.28,-.38,.12],[0,0,0]];
-    const focusPositions = heartPositions.map(() => new THREE.Vector3(0,0,4.15));
-    const loader = new THREE.TextureLoader(); const photoUrls = Array.from({length:9},(_,index)=>`photos/photo-${String(index+1).padStart(2,'0')}.jpg`);
-    const textures = await Promise.all(
-      photoUrls.map(url => new Promise(resolve => loader.load(url, texture => {
-        texture.colorSpace = THREE.SRGBColorSpace;
-        texture.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());
-        resolve(texture);
-      })))
-    );
-    const frameMaterial = new THREE.MeshBasicMaterial({color:0xfffbf3,side:THREE.FrontSide});
-    function makeCard(index){const map=textures[index],aspect=map.image.width/map.image.height,height=.96,width=height*aspect,frameGeometry=new THREE.PlaneGeometry(width+.13,height+.16),imageGeometry=new THREE.PlaneGeometry(width,height);const card=new THREE.Group(),frontFrame=new THREE.Mesh(frameGeometry,frameMaterial),backFrame=frontFrame.clone();backFrame.rotation.y=Math.PI;const material=new THREE.MeshBasicMaterial({map,side:THREE.FrontSide,transparent:true,opacity:1});const front=new THREE.Mesh(imageGeometry,material),back=front.clone();front.position.set(0,.035,.012);back.position.set(0,.035,-.012);back.rotation.y=Math.PI;card.add(frontFrame,backFrame,front,back);card.position.copy(heartPositions[index]);card.rotation.set(...heartRotations[index]);const baseScale=index===8?1.08:.72+(heartPositions[index].z+1)*.08;card.scale.setScalar(baseScale);card.userData={index,baseScale,material,heartQuaternion:card.quaternion.clone(),focusQuaternion:new THREE.Quaternion(),focus:0};scene.add(card);cards.push(card);photoMeshes.push(front,back);}
-    textures.forEach((_,index)=>makeCard(index));
-    function heartDust(count,far){const geometry=new THREE.BufferGeometry(),positions=new Float32Array(count*3),colors=new Float32Array(count*3),sizes=new Float32Array(count),seeds=new Float32Array(count);const palette=[new THREE.Color('#e61c4c'),new THREE.Color('#ff557c'),new THREE.Color('#ffa938'),new THREE.Color('#fff0bd')];for(let index=0;index<count;index++){let x,y,z;if(far){const radius=12+Math.random()*18,theta=Math.random()*Math.PI*2,u=Math.random()*2-1,v=Math.sqrt(1-u*u);x=radius*v*Math.cos(theta);y=radius*u*.75;z=radius*v*Math.sin(theta);}else{const t=index/count*Math.PI*2;const spread=.85+Math.random()*.18;x=(16*Math.sin(t)**3)*.35*spread;y=(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t))*.32*spread;z=(Math.random()-.5)*3.3;}positions.set([x,y,z],index*3);const color=palette[Math.floor(Math.random()*palette.length)];colors.set([color.r,color.g,color.b],index*3);sizes[index]=far?.8+Math.random()*1.9:1+Math.random()*3.2;seeds[index]=Math.random()*100;}geometry.setAttribute('position',new THREE.BufferAttribute(positions,3));geometry.setAttribute('aColor',new THREE.BufferAttribute(colors,3));geometry.setAttribute('aSize',new THREE.BufferAttribute(sizes,1));geometry.setAttribute('aSeed',new THREE.BufferAttribute(seeds,1));const material=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,uniforms:{uTime:{value:0},uPixel:{value:renderer.getPixelRatio()}},vertexShader:`uniform float uTime;uniform float uPixel;attribute vec3 aColor;attribute float aSize;attribute float aSeed;varying vec3 vColor;void main(){vec3 p=position+vec3(sin(uTime*.24+aSeed),cos(uTime*.18+aSeed*1.7),sin(uTime*.16+aSeed*.7))*.13;vec4 mv=modelViewMatrix*vec4(p,1.);gl_PointSize=aSize*uPixel*(48./-mv.z);gl_Position=projectionMatrix*mv;vColor=aColor;}`,fragmentShader:`varying vec3 vColor;void main(){float d=distance(gl_PointCoord,vec2(.5));float a=smoothstep(.52,.06,d);gl_FragColor=vec4(vColor*a,a*.62);}`});const points=new THREE.Points(geometry,material);dustGroup.add(points);return material;}
-    const heartDustMaterial=heartDust(1600,false),starDustMaterial=heartDust(650,true);
-    const composer=new EffectComposer(renderer);composer.addPass(new RenderPass(scene,camera));composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),.24,.78,.64));const bokeh=new BokehPass(scene,camera,{focus:20,aperture:.000025,maxblur:.0018});composer.addPass(bokeh);
-    let entered=false,elapsed=0,startAt=0,focusedIndex=null,focusMix=0;const clock=new THREE.Clock();
-    function easing(value){return value*value*(3-2*value)}function formationMix(){return entered?easing(Math.min(1,(elapsed-startAt)/4.4)):0;}
-    function clearFocus(){focusedIndex=null;controls.enabled=true;}
-    addEventListener('pointermove',event=>{pointer.x=event.clientX/innerWidth*2-1;pointer.y=-(event.clientY/innerHeight)*2+1;raycaster.setFromCamera(pointer,camera);const hit=raycaster.intersectObjects(photoMeshes,false)[0];canvas.style.cursor=hit?'pointer':'grab';});
-    addEventListener('click',event=>{if(event.target.closest('button'))return;raycaster.setFromCamera(pointer,camera);const hit=raycaster.intersectObjects(photoMeshes,false)[0];if(!hit){clearFocus();return;}const card=hit.object.parent;focusedIndex=focusedIndex===card.userData.index?null:card.userData.index;controls.enabled=focusedIndex===null;});
-    function focusedScale(card){const distance=6.15,visibleHeight=2*Math.tan(THREE.MathUtils.degToRad(camera.fov*.5))*distance,aspect=textures[card.userData.index].image.width/textures[card.userData.index].image.height;return Math.min(visibleHeight*.86/.96,visibleHeight*camera.aspect*.88/(.96*aspect));}
-    function updateCards(delta){const formation=formationMix();focusMix=THREE.MathUtils.damp(focusMix,focusedIndex===null?0:1,7,delta);cards.forEach(card=>{const data=card.userData,isFocus=data.index===focusedIndex;const breath=1+Math.sin(elapsed*.75+data.index)*.018;const heartPosition=heartPositions[data.index].clone().multiplyScalar(1+Math.sin(elapsed*.68)*.025);const position=isFocus?focusPositions[data.index]:heartPosition;const quaternion=isFocus?camera.quaternion:data.heartQuaternion;const scale=isFocus?focusedScale(card):data.baseScale;card.position.lerp(position,THREE.MathUtils.damp(0,1,formation*7,delta));card.quaternion.slerp(quaternion,THREE.MathUtils.damp(0,1,(isFocus?focusMix:formation)*8,delta));card.scale.setScalar(THREE.MathUtils.lerp(card.scale.x,scale*breath,THREE.MathUtils.damp(0,1,(isFocus?focusMix:formation)*8,delta)));const opacity=(focusedIndex!==null&&!isFocus)?.16:1;data.material.opacity=THREE.MathUtils.damp(data.material.opacity,opacity,8,delta);});}
-    const audio=document.querySelector('#birthday-audio'),music=document.querySelector('#music');let audioContext,gain,audioReady=false;function prepareAudio(){if(audioReady)return;audioContext=new(window.AudioContext||window.webkitAudioContext)();const source=audioContext.createMediaElementSource(audio);gain=audioContext.createGain();gain.gain.value=2.25;source.connect(gain).connect(audioContext.destination);audioReady=true}function playAudio(){prepareAudio();audioContext.resume();audio.play().then(()=>music.classList.add('active')).catch(()=>music.title='未能加载音乐，请确认 virtual.flac 已发布到同一目录')}
-    document.querySelector('#enter').addEventListener('click',()=>{entered=true;startAt=elapsed;document.querySelector('#start').classList.add('hide');playAudio();setTimeout(()=>document.querySelector('#message').classList.add('show'),1200)});music.addEventListener('click',()=>{if(audio.paused)playAudio();else{audio.pause();music.classList.remove('active')}});document.querySelector('#reset').addEventListener('click',()=>{clearFocus();controls.reset();camera.position.set(0,.1,22);controls.target.set(0,0,0)});
-    addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setPixelRatio(Math.min(devicePixelRatio,1.55));renderer.setSize(innerWidth,innerHeight);composer.setSize(innerWidth,innerHeight)});
-    function animate(){requestAnimationFrame(animate);const delta=Math.min(clock.getDelta(),.05);elapsed+=delta;updateCards(delta);heartDustMaterial.uniforms.uTime.value=elapsed;starDustMaterial.uniforms.uTime.value=elapsed;dustGroup.rotation.y+=delta*.075;dustGroup.rotation.x=Math.sin(elapsed*.25)*.035;const breathing=1+Math.sin(elapsed*.68)*.025;dustGroup.scale.setScalar(breathing);if(focusedIndex!==null){camera.position.lerp(new THREE.Vector3(0,0,10.3),THREE.MathUtils.damp(0,1,7,delta));bokeh.materialBokeh.uniforms.focus.value=6.15;bokeh.materialBokeh.uniforms.aperture.value=.00009;}else{bokeh.materialBokeh.uniforms.focus.value=20;bokeh.materialBokeh.uniforms.aperture.value=.000025;}controls.update();composer.render();}
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x020203, .026);
+    const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, .1, 90);
+    camera.position.set(0, .15, 22);
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, powerPreference: 'high-performance' });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.55));
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = .94;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    const controls = new OrbitControls(camera, canvas);
+    controls.enableDamping = true; controls.dampingFactor = .055; controls.enablePan = false;
+    controls.minDistance = 7; controls.maxDistance = 30; controls.target.set(0, 0, 0);
+
+    const heartGroup = new THREE.Group(); scene.add(heartGroup);
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    const photoMeshes = [], cards = [];
+    const loader = new THREE.TextureLoader();
+    const photoUrls = Array.from({ length: 9 }, (_, index) => `photos/photo-${String(index + 1).padStart(2, '0')}.jpg`);
+    const textures = await Promise.all(photoUrls.map(url => new Promise(resolve => loader.load(url, texture => {
+      texture.colorSpace = THREE.SRGBColorSpace;
+      texture.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());
+      resolve(texture);
+    }))));
+
+    const heartScale = 3.35;
+    function heartField(x, y, z) {
+      const radial = Math.sqrt(x * x + z * z);
+      const vertical = y < 0 ? y / 1.28 : y / .96;
+      const profile = radial * (vertical > 0 ? .76 + .17 * (1 - vertical) : 1.08 + .15 * -vertical);
+      const base = profile * profile + 1.2 * vertical * vertical - 1;
+      return base * base * base - 1.3 * profile * profile * vertical * vertical * vertical;
+    }
+    function sampleHeartPoint(surface, region = 'any') {
+      for (let attempt = 0; attempt < 12000; attempt++) {
+        const x = THREE.MathUtils.randFloatSpread(2.72);
+        const y = THREE.MathUtils.randFloat(-1.42, 1.16);
+        const z = THREE.MathUtils.randFloatSpread(2.72);
+        const value = heartField(x, y, z);
+        if (value > 0) continue;
+        if (surface && value < -.038) continue;
+        const radial = Math.sqrt(x * x + z * z);
+        if (region === 'lobe' && !(y > .1 && radial > .35)) continue;
+        if (region === 'notch' && !(y > .46 && radial < .42)) continue;
+        if (region === 'tip' && !(y < -.58 && radial < .78)) continue;
+        return new THREE.Vector3(x * heartScale, y * heartScale, z * heartScale);
+      }
+      return new THREE.Vector3();
+    }
+
+    const heartPositions = [
+      new THREE.Vector3(-2.7, 1.62, 2.25), new THREE.Vector3(2.7, 1.62, 2.25), new THREE.Vector3(0, .08, 3.55),
+      new THREE.Vector3(-3.75, -.2, 1.2), new THREE.Vector3(3.75, -.2, 1.2), new THREE.Vector3(0, -3.15, 1.36),
+      new THREE.Vector3(-2.45, .52, -2.65), new THREE.Vector3(2.45, .52, -2.65), new THREE.Vector3(0, 2.52, .82)
+    ];
+    const floatPositions = [
+      new THREE.Vector3(-9.6, 4.8, -5.2), new THREE.Vector3(8.7, 5.3, -6.1), new THREE.Vector3(-.5, 7.2, -8.4),
+      new THREE.Vector3(-11.4, -.8, -3.7), new THREE.Vector3(10.9, -.2, -4.8), new THREE.Vector3(-1.2, -7.5, -6.5),
+      new THREE.Vector3(-7.8, -4.9, -8.8), new THREE.Vector3(7.6, -5.1, -7.9), new THREE.Vector3(.8, 1.2, -10.4)
+    ];
+    const photoRotations = [[-.08,.18,-.04],[.08,-.18,.04],[0,0,0],[.08,.3,-.05],[-.08,-.3,.05],[.04,0,0],[-.08,.3,-.04],[.08,-.3,.04],[0,0,0]];
+    const focusPosition = new THREE.Vector3(0, 0, 4.35);
+    scene.add(new THREE.AmbientLight(0xffe6bf, .55));
+    const frameMaterial = new THREE.MeshPhysicalMaterial({ color: 0xfff4d6, emissive: 0xe9c37f, emissiveIntensity: .16, metalness: .05, roughness: .09, transparent: true, opacity: .42, transmission: .18, thickness: .08, depthWrite: false, side: THREE.FrontSide });
+    const shadowMaterial = new THREE.MeshBasicMaterial({ color: 0x050308, transparent: true, opacity: .28, depthWrite: false, side: THREE.DoubleSide });
+    function makeCard(index) {
+      const map = textures[index];
+      const aspect = map.image.width / map.image.height;
+      const imageHeight = .96, imageWidth = imageHeight * aspect;
+      const card = new THREE.Group();
+      const frameGeometry = new THREE.PlaneGeometry(imageWidth + .075, imageHeight + .085);
+      const shadowGeometry = new THREE.PlaneGeometry(imageWidth + .16, imageHeight + .18);
+      const imageGeometry = new THREE.PlaneGeometry(imageWidth, imageHeight);
+      const frontFrame = new THREE.Mesh(frameGeometry, frameMaterial);
+      const backFrame = frontFrame.clone(); backFrame.rotation.y = Math.PI;
+      const frontShadow = new THREE.Mesh(shadowGeometry, shadowMaterial);
+      const backShadow = frontShadow.clone(); backShadow.rotation.y = Math.PI;
+      const material = new THREE.MeshBasicMaterial({ map, side: THREE.FrontSide, transparent: true, opacity: 1 });
+      const front = new THREE.Mesh(imageGeometry, material);
+      const back = front.clone();
+      frontShadow.position.set(.035, -.035, -.025); backShadow.position.set(-.035, -.035, .025);
+      front.position.set(0, .018, .014); back.position.set(0, .018, -.014); back.rotation.y = Math.PI;
+      card.add(frontShadow, backShadow, frontFrame, backFrame, front, back);
+      card.position.copy(floatPositions[index]); card.renderOrder = 3;
+      card.rotation.set(...photoRotations[index]);
+      const heartScale = index === 8 ? 1.08 : .74 + Math.max(heartPositions[index].z, -.8) * .08;
+      const floatScale = .44 + (index % 3) * .06;
+      card.scale.setScalar(floatScale);
+      card.userData = { index, heartScale, floatScale, material, floatPosition: floatPositions[index].clone(), heartPosition: heartPositions[index].clone(), focusPosition: focusPosition.clone() };
+      frontShadow.renderOrder = 2; backShadow.renderOrder = 2; frontFrame.renderOrder = 3; backFrame.renderOrder = 3; front.renderOrder = 4; back.renderOrder = 4;
+      heartGroup.add(card); cards.push(card); photoMeshes.push(front, back);
+    }
+    textures.forEach((_, index) => makeCard(index));
+
+    function particleVolume(count, kind) {
+      const geometry = new THREE.BufferGeometry();
+      const positions = new Float32Array(count * 3);
+      const colors = new Float32Array(count * 3);
+      const sizes = new Float32Array(count);
+      const seeds = new Float32Array(count);
+      const palette = ['outer', 'lobe', 'notch', 'tip'].includes(kind) ? [new THREE.Color('#d71138'), new THREE.Color('#f03c5c'), new THREE.Color('#ff6f87')] : kind === 'middle' ? [new THREE.Color('#aa5427'), new THREE.Color('#d78738'), new THREE.Color('#ffd078')] : kind === 'core' ? [new THREE.Color('#3d1726'), new THREE.Color('#6a2639'), new THREE.Color('#8b3b39')] : kind === 'far' ? [new THREE.Color('#59203c'), new THREE.Color('#9b263d'), new THREE.Color('#bb7833'), new THREE.Color('#d8b36a')] : kind === 'mid' ? [new THREE.Color('#b8173e'), new THREE.Color('#e34259'), new THREE.Color('#f39a35'), new THREE.Color('#ffd779')] : [new THREE.Color('#df153f'), new THREE.Color('#ff4f78'), new THREE.Color('#ff9c2f'), new THREE.Color('#fff0bd')];
+      for (let index = 0; index < count; index++) {
+        let point;
+        if (kind === 'outer') point = sampleHeartPoint(true);
+        else if (kind === 'lobe') point = sampleHeartPoint(true, 'lobe');
+        else if (kind === 'notch') point = sampleHeartPoint(true, 'notch');
+        else if (kind === 'tip') point = sampleHeartPoint(true, 'tip');
+        else if (kind === 'middle') point = sampleHeartPoint(false);
+        else if (kind === 'core') point = sampleHeartPoint(false);
+        else if (kind === 'far') point = new THREE.Vector3().randomDirection().multiplyScalar(18 + Math.random() * 31);
+        else if (kind === 'mid') {
+          const angle = Math.random() * Math.PI * 2, radius = 9 + Math.random() * 12;
+          point = new THREE.Vector3(Math.cos(angle) * radius, Math.sin(angle * 2.6) * 2.8 + THREE.MathUtils.randFloatSpread(4), Math.sin(angle) * radius);
+        } else point = new THREE.Vector3().randomDirection().multiplyScalar(6 + Math.random() * 8);
+        positions.set([point.x, point.y, point.z], index * 3);
+        const color = palette[Math.floor(Math.random() * palette.length)];
+        colors.set([color.r, color.g, color.b], index * 3);
+        sizes[index] = ['outer', 'lobe', 'notch', 'tip'].includes(kind) ? .85 + Math.random() * 1.75 : kind === 'middle' ? .55 + Math.random() * 1.1 : kind === 'core' ? .28 + Math.random() * .6 : kind === 'far' ? .16 + Math.random() * .44 : kind === 'mid' ? .34 + Math.random() * 1.05 : 1.7 + Math.random() * 2.5;
+        seeds[index] = Math.random() * 100;
+      }
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geometry.setAttribute('aColor', new THREE.BufferAttribute(colors, 3));
+      geometry.setAttribute('aSize', new THREE.BufferAttribute(sizes, 1));
+      geometry.setAttribute('aSeed', new THREE.BufferAttribute(seeds, 1));
+      const heartKind = ['outer', 'lobe', 'notch', 'tip', 'middle', 'core'].includes(kind);
+      const material = new THREE.ShaderMaterial({
+        transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+        uniforms: { uTime: { value: 0 }, uPixel: { value: renderer.getPixelRatio() }, uKind: { value: heartKind ? 1 : kind === 'near' ? 2 : 0 }, uOpacity: { value: 1 } },
+        vertexShader: `uniform float uTime;uniform float uPixel;uniform float uKind;attribute vec3 aColor;attribute float aSize;attribute float aSeed;varying vec3 vColor;void main(){float motion=uKind>.5?.075:.18;vec3 p=position+vec3(sin(uTime*.23+aSeed),cos(uTime*.18+aSeed*1.7),sin(uTime*.16+aSeed*.7))*motion;vec4 mv=modelViewMatrix*vec4(p,1.);gl_PointSize=aSize*uPixel*(48./-mv.z);gl_Position=projectionMatrix*mv;vColor=aColor;}`,
+        fragmentShader: `uniform float uOpacity;varying vec3 vColor;void main(){float d=distance(gl_PointCoord,vec2(.5));float a=smoothstep(.52,.06,d);gl_FragColor=vec4(vColor*a,a*.62*uOpacity);}`
+      });
+      const points = new THREE.Points(geometry, material);
+      points.renderOrder = 0;
+      (heartKind ? heartGroup : scene).add(points);
+      return material;
+    }
+    const heartOuterMaterial = particleVolume(620, 'outer');
+    const heartLobeMaterial = particleVolume(260, 'lobe');
+    const heartNotchMaterial = particleVolume(110, 'notch');
+    const heartTipMaterial = particleVolume(150, 'tip');
+    const heartMiddleMaterial = particleVolume(270, 'middle');
+    const heartCoreMaterial = particleVolume(85, 'core');
+    const farStarMaterial = particleVolume(1450, 'far');
+    const midStarMaterial = particleVolume(680, 'mid');
+    const nearStarMaterial = particleVolume(58, 'near');
+
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), .22, .78, .64));
+    const bokeh = new BokehPass(scene, camera, { focus: 20, aperture: .000025, maxblur: .0018 });
+    composer.addPass(bokeh);
+    const debugBox = new THREE.Box3Helper(new THREE.Box3(new THREE.Vector3(-3.85, -3.95, -3.85), new THREE.Vector3(3.85, 3.85, 3.85)), 0xffc75e);
+    debugBox.visible = false; scene.add(debugBox);
+
+    let entered = false, elapsed = 0, focusedIndex = null, debugMode = false, debugAngle = 0, photoMode = 'floating', heartParticleMix = 0;
+    const clock = new THREE.Clock();
+    function setPhotoMode(mode, index = null) {
+      photoMode = mode;
+      focusedIndex = mode === 'focus' ? index : null;
+      controls.enabled = mode !== 'focus' && !debugMode;
+    }
+    function clearFocus() { setPhotoMode('heart'); }
+    function focusedScale(card) {
+      const distance = 6.15;
+      const visibleHeight = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov * .5)) * distance;
+      const aspect = textures[card.userData.index].image.width / textures[card.userData.index].image.height;
+      return Math.min(visibleHeight * .86 / .96, visibleHeight * camera.aspect * .88 / (.96 * aspect));
+    }
+    function updateCards(delta) {
+      cards.forEach(card => {
+        const data = card.userData, isFocus = data.index === focusedIndex;
+        const breath = 1 + Math.sin(elapsed * .75 + data.index) * .018;
+        const destination = photoMode === 'floating' ? data.floatPosition : photoMode === 'focus' && isFocus ? data.focusPosition : data.heartPosition;
+        const scale = photoMode === 'floating' ? data.floatScale * breath : photoMode === 'focus' && isFocus ? focusedScale(card) : data.heartScale * breath;
+        card.position.lerp(destination, THREE.MathUtils.damp(0, 1, photoMode === 'focus' && isFocus ? 8 : 3.8, delta));
+        card.lookAt(camera.position);
+        card.rotateZ(photoRotations[data.index][2]);
+        card.scale.setScalar(THREE.MathUtils.lerp(card.scale.x, scale, THREE.MathUtils.damp(0, 1, photoMode === 'focus' && isFocus ? 8 : 3.8, delta)));
+        data.material.opacity = THREE.MathUtils.damp(data.material.opacity, photoMode === 'focus' && !isFocus ? .16 : 1, 8, delta);
+      });
+    }
+
+    addEventListener('pointermove', event => {
+      pointer.x = event.clientX / innerWidth * 2 - 1; pointer.y = -(event.clientY / innerHeight) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      canvas.style.cursor = raycaster.intersectObjects(photoMeshes, false)[0] ? 'pointer' : 'grab';
+    });
+    addEventListener('click', event => {
+      if (debugMode) return;
+      if (event.target.closest('button')) return;
+      raycaster.setFromCamera(pointer, camera);
+      const hit = raycaster.intersectObjects(photoMeshes, false)[0];
+      if (!hit) { clearFocus(); return; }
+      const card = hit.object.parent;
+      setPhotoMode(photoMode === 'focus' && focusedIndex === card.userData.index ? 'heart' : 'focus', card.userData.index);
+    });
+    addEventListener('keydown', event => {
+      if (event.key.toLowerCase() !== 't') return;
+      debugMode = !debugMode; setPhotoMode('heart'); debugBox.visible = debugMode;
+      document.querySelector('#debug').classList.toggle('show', debugMode);
+      if (debugMode) { debugAngle = Math.atan2(camera.position.x, camera.position.z); controls.enabled = false; }
+    });
+
+    const audio = document.querySelector('#birthday-audio');
+    const music = document.querySelector('#music');
+    let audioContext, gain, audioReady = false;
+    function prepareAudio() {
+      if (audioReady) return;
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const source = audioContext.createMediaElementSource(audio);
+      gain = audioContext.createGain(); gain.gain.value = 2.25;
+      source.connect(gain).connect(audioContext.destination); audioReady = true;
+    }
+    function playAudio() { prepareAudio(); audioContext.resume(); audio.play().then(() => music.classList.add('active')).catch(() => { music.title = '未能加载音乐，请确认 virtual.flac 已发布到同一目录'; }); }
+    document.querySelector('#enter').addEventListener('click', () => {
+      entered = true; setPhotoMode('heart'); document.querySelector('#start').classList.add('hide'); playAudio();
+      setTimeout(() => document.querySelector('#message').classList.add('show'), 1200);
+    });
+    music.addEventListener('click', () => { if (audio.paused) playAudio(); else { audio.pause(); music.classList.remove('active'); } });
+    document.querySelector('#reset').addEventListener('click', () => { debugMode = false; debugBox.visible = false; document.querySelector('#debug').classList.remove('show'); setPhotoMode('heart'); controls.reset(); camera.position.set(0, .15, 22); controls.target.set(0, 0, 0); });
+    controls.addEventListener('change', () => {
+      const distance = camera.position.distanceTo(controls.target);
+      if (entered && !debugMode && photoMode !== 'focus' && distance >= 15) setPhotoMode('heart');
+    });
+    addEventListener('resize', () => {
+      camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+      renderer.setPixelRatio(Math.min(devicePixelRatio, 1.55)); renderer.setSize(innerWidth, innerHeight); composer.setSize(innerWidth, innerHeight);
+    });
+    function animate() {
+      requestAnimationFrame(animate);
+      const delta = Math.min(clock.getDelta(), .05); elapsed += delta;
+      if (debugMode) {
+        debugAngle += delta * .48;
+        camera.position.set(Math.sin(debugAngle) * 22, 2.2, Math.cos(debugAngle) * 22);
+        camera.lookAt(0, 0, 0);
+      }
+      updateCards(delta);
+      heartOuterMaterial.uniforms.uTime.value = elapsed; heartLobeMaterial.uniforms.uTime.value = elapsed; heartNotchMaterial.uniforms.uTime.value = elapsed; heartTipMaterial.uniforms.uTime.value = elapsed;
+      heartMiddleMaterial.uniforms.uTime.value = elapsed; heartCoreMaterial.uniforms.uTime.value = elapsed;
+      farStarMaterial.uniforms.uTime.value = elapsed; midStarMaterial.uniforms.uTime.value = elapsed; nearStarMaterial.uniforms.uTime.value = elapsed;
+      heartParticleMix = THREE.MathUtils.damp(heartParticleMix, photoMode === 'floating' ? .08 : photoMode === 'focus' ? .42 : 1, 3.8, delta);
+      heartOuterMaterial.uniforms.uOpacity.value = heartParticleMix; heartLobeMaterial.uniforms.uOpacity.value = heartParticleMix; heartNotchMaterial.uniforms.uOpacity.value = heartParticleMix; heartTipMaterial.uniforms.uOpacity.value = heartParticleMix;
+      heartMiddleMaterial.uniforms.uOpacity.value = heartParticleMix * .78; heartCoreMaterial.uniforms.uOpacity.value = heartParticleMix * .46;
+      heartGroup.rotation.y += delta * .075; heartGroup.rotation.x = Math.sin(elapsed * .25) * .035;
+      heartGroup.scale.setScalar(1 + (Math.sin(elapsed * .55) * .5 + .5) * .03);
+      if (focusedIndex !== null) {
+        camera.position.lerp(new THREE.Vector3(0, 0, 10.3), THREE.MathUtils.damp(0, 1, 7, delta));
+        bokeh.materialBokeh.uniforms.focus.value = 6.15; bokeh.materialBokeh.uniforms.aperture.value = .00009;
+      } else { bokeh.materialBokeh.uniforms.focus.value = 20; bokeh.materialBokeh.uniforms.aperture.value = .000025; }
+      if (!debugMode) controls.update(); composer.render();
+    }
     animate();
   </script>
 </body>
