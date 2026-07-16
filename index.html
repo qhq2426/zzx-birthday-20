@@ -146,18 +146,18 @@
       const colors = new Float32Array(count * 3);
       const sizes = new Float32Array(count);
       const seeds = new Float32Array(count);
-      const white = [new THREE.Color('#ffffff'), new THREE.Color('#fff7e8'), new THREE.Color('#ffe9cf')];
-      const gold = [new THREE.Color('#ffd700'), new THREE.Color('#ffbd4a'), new THREE.Color('#ffe49a')];
-      const red = [new THREE.Color('#ff3366'), new THREE.Color('#ff4d6d'), new THREE.Color('#d91448')];
+      const white = [new THREE.Color('#ffffff'), new THREE.Color('#fff7e6')];
+      const gold = [new THREE.Color('#ffd700'), new THREE.Color('#ffcc66')];
+      const red = [new THREE.Color('#ff3355'), new THREE.Color('#ff0033')];
       function stellarColor() {
         const chance = Math.random();
         let palette;
-        if (['outer', 'lobe', 'notch', 'tip'].includes(kind)) palette = chance < .24 ? white : chance < .49 ? gold : red;
-        else if (kind === 'middle') palette = chance < .35 ? white : chance < .7 ? gold : red;
-        else if (kind === 'core') palette = chance < .15 ? white : chance < .4 ? gold : red;
-        else if (kind === 'far') palette = chance < .5 ? white : chance < .78 ? gold : red;
-        else if (kind === 'mid') palette = chance < .38 ? white : chance < .66 ? gold : red;
-        else palette = chance < .45 ? white : chance < .8 ? gold : red;
+        if (['outer', 'lobe', 'notch', 'tip'].includes(kind)) palette = chance < .37 ? white : chance < .62 ? gold : red;
+        else if (kind === 'middle') palette = chance < .3 ? white : chance < .5 ? gold : red;
+        else if (kind === 'core') palette = chance < .2 ? white : chance < .4 ? gold : red;
+        else if (kind === 'far') palette = chance < .48 ? white : chance < .75 ? gold : red;
+        else if (kind === 'mid') palette = chance < .4 ? white : chance < .65 ? gold : red;
+        else palette = chance < .48 ? white : chance < .8 ? gold : red;
         return palette[Math.floor(Math.random() * palette.length)];
       }
       for (let index = 0; index < count; index++) {
@@ -187,8 +187,8 @@
       const material = new THREE.ShaderMaterial({
         transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
         uniforms: { uTime: { value: 0 }, uPixel: { value: renderer.getPixelRatio() }, uKind: { value: heartKind ? 1 : kind === 'near' ? 2 : 0 }, uOpacity: { value: 1 } },
-        vertexShader: `uniform float uTime;uniform float uPixel;uniform float uKind;attribute vec3 aColor;attribute float aSize;attribute float aSeed;varying vec3 vColor;void main(){float motion=uKind>.5?.075:.18;vec3 p=position+vec3(sin(uTime*.23+aSeed),cos(uTime*.18+aSeed*1.7),sin(uTime*.16+aSeed*.7))*motion;vec4 mv=modelViewMatrix*vec4(p,1.);gl_PointSize=aSize*uPixel*(48./-mv.z);gl_Position=projectionMatrix*mv;vColor=aColor;}`,
-        fragmentShader: `uniform float uOpacity;varying vec3 vColor;void main(){float d=distance(gl_PointCoord,vec2(.5));float halo=smoothstep(.52,.08,d);float core=smoothstep(.18,0.,d);float a=(halo*.4+core*.65)*uOpacity;gl_FragColor=vec4(vColor*(halo*.72+core*1.18),a);}`
+        vertexShader: `uniform float uTime;uniform float uPixel;uniform float uKind;attribute vec3 aColor;attribute float aSize;attribute float aSeed;varying vec3 vColor;varying float vTwinkle;void main(){float motion=uKind>.5?.075:.18;vec3 p=position+vec3(sin(uTime*.23+aSeed),cos(uTime*.18+aSeed*1.7),sin(uTime*.16+aSeed*.7))*motion;vec4 mv=modelViewMatrix*vec4(p,1.);gl_PointSize=aSize*uPixel*(48./-mv.z);gl_Position=projectionMatrix*mv;vColor=aColor;vTwinkle=.72+.28*sin(uTime*.58+aSeed*2.35);}`,
+        fragmentShader: `uniform float uOpacity;varying vec3 vColor;varying float vTwinkle;void main(){float d=distance(gl_PointCoord,vec2(.5));float halo=smoothstep(.52,.08,d);float core=smoothstep(.18,0.,d);float a=(halo*.4+core*.65)*uOpacity*vTwinkle;gl_FragColor=vec4(vColor*(halo*.72+core*1.18)*vTwinkle,a);}`
       });
       const points = new THREE.Points(geometry, material);
       points.renderOrder = 0;
@@ -201,9 +201,9 @@
       const colors = new Float32Array(count * 3);
       const sizes = new Float32Array(count);
       const seeds = new Float32Array(count);
-      const white = [new THREE.Color('#ffffff'), new THREE.Color('#fff4dc')];
-      const gold = [new THREE.Color('#ffd700'), new THREE.Color('#ffbd4a')];
-      const red = [new THREE.Color('#ff3366'), new THREE.Color('#ff4d6d')];
+      const white = [new THREE.Color('#ffffff'), new THREE.Color('#fff7e6')];
+      const gold = [new THREE.Color('#ffd700'), new THREE.Color('#ffcc66')];
+      const red = [new THREE.Color('#ff3355'), new THREE.Color('#ff0033')];
       for (let index = 0; index < count; index++) {
         const point = new THREE.Vector3().randomDirection().multiplyScalar(9 + Math.random() * 20);
         point.y *= .76;
@@ -239,7 +239,7 @@
     const farStarMaterial = particleVolume(3000, 'far');
     const midStarMaterial = particleVolume(1200, 'mid');
     const nearStarMaterial = particleVolume(90, 'near');
-    const crossStarMaterial = crossStarField(64);
+    const crossStarMaterial = crossStarField(90);
 
     const composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
