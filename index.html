@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#211b43">
+  <title>二十岁生日快乐</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=Noto+Serif+SC:wght@500;600;700;900&display=swap');
+    :root{--night:#211b43;--lav:#d7c8ff;--gold:#ffcf63;--pink:#ff8eb9;--milk:#fffaf1;}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;overflow-x:hidden;background:var(--night);color:var(--milk);font-family:"Noto Serif SC",serif}
+    .stars{position:fixed;inset:0;z-index:-1;background-image:radial-gradient(circle at 10% 20%,#fff 0 1px,transparent 1.5px),radial-gradient(circle at 82% 35%,#fff 0 1px,transparent 1.5px),radial-gradient(circle at 35% 75%,#fff 0 1px,transparent 1.5px),radial-gradient(circle at 70% 88%,#fff 0 1.5px,transparent 2px);background-size:170px 170px,230px 230px,200px 200px,280px 280px;opacity:.55}
+    .hero{min-height:100vh;position:relative;display:grid;place-items:center;padding:32px 24px;text-align:center;isolation:isolate}
+    .hero:before,.hero:after{content:"";position:absolute;z-index:-1;border-radius:50%;filter:blur(1px)}.hero:before{width:48vw;height:48vw;min-width:340px;min-height:340px;background:#46399b;opacity:.7}.hero:after{width:62vw;height:62vw;min-width:430px;min-height:430px;border:1px solid rgba(255,255,255,.25)}
+    .eyebrow{font:12px "DM Mono",monospace;letter-spacing:.2em;color:var(--gold);margin-bottom:20px}.twenty{font-size:clamp(9rem,31vw,23rem);letter-spacing:-.13em;line-height:.66;font-weight:900;background:linear-gradient(135deg,#fff6bc 5%,var(--gold) 42%,var(--pink) 83%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(8px 11px 0 rgba(14,10,39,.28))}.title{margin:42px 0 0;font-size:clamp(2.3rem,6vw,5.3rem);letter-spacing:.05em;line-height:1.1}.subtitle{margin:15px 0 0;color:#d7c8ff;font-size:clamp(1rem,2vw,1.25rem)}
+    .scroll{position:absolute;bottom:27px;font:11px "DM Mono",monospace;letter-spacing:.16em;color:#d7c8ff;animation:bob 2s infinite}@keyframes bob{50%{transform:translateY(7px)}}
+    .letter{max-width:760px;margin:auto;padding:150px 28px 125px;text-align:center}.number{font:12px "DM Mono",monospace;letter-spacing:.18em;color:var(--gold)}h2{font-size:clamp(2.2rem,5vw,4.2rem);line-height:1.32;letter-spacing:.03em;margin:28px 0}.letter p{font-size:1.18rem;line-height:2.25;color:#eee8ff;margin:0 auto;max-width:610px}.letter p+p{margin-top:24px}.sign{display:block;margin-top:40px;color:var(--pink);font-size:1.15rem}
+    .wishes{background:var(--milk);color:var(--night);padding:100px max(24px,calc((100vw - 1050px)/2))}.wishes h3{margin:13px 0 48px;font-size:clamp(2rem,5vw,4rem);letter-spacing:.04em}.wish-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.wish{padding:27px;min-height:210px;border:1px solid #d7c8ff;border-radius:4px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .25s,background .25s}.wish:hover{transform:translateY(-8px);background:var(--lav)}.wish b{font:2.4rem "DM Mono",monospace;color:#7159ce}.wish p{margin:0;font-size:1.1rem;line-height:1.65}
+    .final{min-height:78vh;display:grid;place-items:center;padding:90px 24px;text-align:center;position:relative}.final h2{font-size:clamp(3.1rem,8vw,7rem);line-height:1.14;margin:20px 0}.cake{font-size:clamp(5rem,14vw,10rem);filter:drop-shadow(0 0 23px rgba(255,207,99,.45));animation:float 3s ease-in-out infinite}@keyframes float{50%{transform:translateY(-13px) rotate(3deg)}}.button{display:inline-block;margin-top:20px;padding:15px 23px;border:1px solid var(--gold);border-radius:100px;color:var(--gold);font:13px "DM Mono",monospace;letter-spacing:.12em;transition:.2s}.button:hover{background:var(--gold);color:var(--night)}footer{position:absolute;bottom:24px;font:10px "DM Mono",monospace;letter-spacing:.1em;color:#9589c3}
+    @media(max-width:650px){.letter{padding:110px 24px 90px}.wish-grid{grid-template-columns:1fr}.wish{min-height:160px}.wishes{padding-top:75px;padding-bottom:75px}}
+  </style>
+</head>
+<body id="top">
+  <div class="stars"></div>
+  <section class="hero">
+    <div><div class="eyebrow">A LITTLE PAGE FOR YOUR BIG DAY</div><div class="twenty">20</div><h1 class="title">二十岁生日快乐</h1><p class="subtitle">愿你永远好奇、自由，并被这个世界温柔以待。</p></div>
+    <span class="scroll">SCROLL FOR A SURPRISE ↓</span>
+  </section>
+  <section class="letter">
+    <span class="number">20 YEARS OF YOU</span>
+    <h2>今天开始，<br>二十岁的你闪闪发光。</h2>
+    <p>二十岁不是一道必须答对的题，而是一张可以尽情涂写的白纸。愿你保留不服输的勇气，也拥有随时重来的底气。</p>
+    <p>愿所有奔赴都有意义，所有等待都有回应。愿你所爱之人恰好也爱你，所走的路终将带你去想去的地方。</p>
+    <span class="sign">—— 来自一直为你祝福的我</span>
+  </section>
+  <section class="wishes">
+    <span class="number">THREE WISHES FOR YOU</span><h3>把这三份礼物送给你</h3>
+    <div class="wish-grid"><article class="wish"><b>01</b><p>愿你拥有热烈爱人的能力，也有好好爱自己的耐心。</p></article><article class="wish"><b>02</b><p>愿你每次抬头，都能看到属于自己的那片星空。</p></article><article class="wish"><b>03</b><p>愿你不被年龄定义，永远活成自己喜欢的样子。</p></article></div>
+  </section>
+  <section class="final">
+    <div><div class="cake">🎂</div><span class="number">MAKE A WISH</span><h2>今天，宇宙偏爱你。</h2><a class="button" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">再看一次祝福 ↑</a></div>
+    <footer>MADE WITH LOVE · HAPPY 20TH BIRTHDAY</footer>
+  </section>
+</body>
+</html>
