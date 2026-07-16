@@ -146,7 +146,20 @@
       const colors = new Float32Array(count * 3);
       const sizes = new Float32Array(count);
       const seeds = new Float32Array(count);
-      const palette = ['outer', 'lobe', 'notch', 'tip'].includes(kind) ? [new THREE.Color('#d71138'), new THREE.Color('#f03c5c'), new THREE.Color('#ff6f87')] : kind === 'middle' ? [new THREE.Color('#aa5427'), new THREE.Color('#d78738'), new THREE.Color('#ffd078')] : kind === 'core' ? [new THREE.Color('#3d1726'), new THREE.Color('#6a2639'), new THREE.Color('#8b3b39')] : kind === 'far' ? [new THREE.Color('#59203c'), new THREE.Color('#9b263d'), new THREE.Color('#bb7833'), new THREE.Color('#d8b36a')] : kind === 'mid' ? [new THREE.Color('#b8173e'), new THREE.Color('#e34259'), new THREE.Color('#f39a35'), new THREE.Color('#ffd779')] : [new THREE.Color('#df153f'), new THREE.Color('#ff4f78'), new THREE.Color('#ff9c2f'), new THREE.Color('#fff0bd')];
+      const white = [new THREE.Color('#ffffff'), new THREE.Color('#fff7e8'), new THREE.Color('#ffe9cf')];
+      const gold = [new THREE.Color('#ffd700'), new THREE.Color('#ffbd4a'), new THREE.Color('#ffe49a')];
+      const red = [new THREE.Color('#ff3366'), new THREE.Color('#ff4d6d'), new THREE.Color('#d91448')];
+      function stellarColor() {
+        const chance = Math.random();
+        let palette;
+        if (['outer', 'lobe', 'notch', 'tip'].includes(kind)) palette = chance < .24 ? white : chance < .49 ? gold : red;
+        else if (kind === 'middle') palette = chance < .35 ? white : chance < .7 ? gold : red;
+        else if (kind === 'core') palette = chance < .15 ? white : chance < .4 ? gold : red;
+        else if (kind === 'far') palette = chance < .5 ? white : chance < .78 ? gold : red;
+        else if (kind === 'mid') palette = chance < .38 ? white : chance < .66 ? gold : red;
+        else palette = chance < .45 ? white : chance < .8 ? gold : red;
+        return palette[Math.floor(Math.random() * palette.length)];
+      }
       for (let index = 0; index < count; index++) {
         let point;
         if (kind === 'outer') point = sampleHeartPoint(true);
@@ -161,9 +174,9 @@
           point = new THREE.Vector3(Math.cos(angle) * radius, Math.sin(angle * 2.6) * 2.8 + THREE.MathUtils.randFloatSpread(4), Math.sin(angle) * radius);
         } else point = new THREE.Vector3().randomDirection().multiplyScalar(6 + Math.random() * 8);
         positions.set([point.x, point.y, point.z], index * 3);
-        const color = palette[Math.floor(Math.random() * palette.length)];
+        const color = stellarColor();
         colors.set([color.r, color.g, color.b], index * 3);
-        sizes[index] = ['outer', 'lobe', 'notch', 'tip'].includes(kind) ? .85 + Math.random() * 1.75 : kind === 'middle' ? .55 + Math.random() * 1.1 : kind === 'core' ? .28 + Math.random() * .6 : kind === 'far' ? .16 + Math.random() * .44 : kind === 'mid' ? .34 + Math.random() * 1.05 : 1.7 + Math.random() * 2.5;
+        sizes[index] = ['outer', 'lobe', 'notch', 'tip'].includes(kind) ? .55 + Math.random() * 1.3 : kind === 'middle' ? .38 + Math.random() * .82 : kind === 'core' ? .2 + Math.random() * .42 : kind === 'far' ? .1 + Math.random() * .3 : kind === 'mid' ? .28 + Math.random() * .82 : 1.15 + Math.random() * 1.8;
         seeds[index] = Math.random() * 100;
       }
       geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -175,22 +188,58 @@
         transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
         uniforms: { uTime: { value: 0 }, uPixel: { value: renderer.getPixelRatio() }, uKind: { value: heartKind ? 1 : kind === 'near' ? 2 : 0 }, uOpacity: { value: 1 } },
         vertexShader: `uniform float uTime;uniform float uPixel;uniform float uKind;attribute vec3 aColor;attribute float aSize;attribute float aSeed;varying vec3 vColor;void main(){float motion=uKind>.5?.075:.18;vec3 p=position+vec3(sin(uTime*.23+aSeed),cos(uTime*.18+aSeed*1.7),sin(uTime*.16+aSeed*.7))*motion;vec4 mv=modelViewMatrix*vec4(p,1.);gl_PointSize=aSize*uPixel*(48./-mv.z);gl_Position=projectionMatrix*mv;vColor=aColor;}`,
-        fragmentShader: `uniform float uOpacity;varying vec3 vColor;void main(){float d=distance(gl_PointCoord,vec2(.5));float a=smoothstep(.52,.06,d);gl_FragColor=vec4(vColor*a,a*.62*uOpacity);}`
+        fragmentShader: `uniform float uOpacity;varying vec3 vColor;void main(){float d=distance(gl_PointCoord,vec2(.5));float halo=smoothstep(.52,.08,d);float core=smoothstep(.18,0.,d);float a=(halo*.4+core*.65)*uOpacity;gl_FragColor=vec4(vColor*(halo*.72+core*1.18),a);}`
       });
       const points = new THREE.Points(geometry, material);
       points.renderOrder = 0;
       (heartKind ? heartGroup : scene).add(points);
       return material;
     }
-    const heartOuterMaterial = particleVolume(620, 'outer');
-    const heartLobeMaterial = particleVolume(260, 'lobe');
-    const heartNotchMaterial = particleVolume(110, 'notch');
-    const heartTipMaterial = particleVolume(150, 'tip');
-    const heartMiddleMaterial = particleVolume(270, 'middle');
-    const heartCoreMaterial = particleVolume(85, 'core');
-    const farStarMaterial = particleVolume(1450, 'far');
-    const midStarMaterial = particleVolume(680, 'mid');
-    const nearStarMaterial = particleVolume(58, 'near');
+    function crossStarField(count) {
+      const geometry = new THREE.BufferGeometry();
+      const positions = new Float32Array(count * 3);
+      const colors = new Float32Array(count * 3);
+      const sizes = new Float32Array(count);
+      const seeds = new Float32Array(count);
+      const white = [new THREE.Color('#ffffff'), new THREE.Color('#fff4dc')];
+      const gold = [new THREE.Color('#ffd700'), new THREE.Color('#ffbd4a')];
+      const red = [new THREE.Color('#ff3366'), new THREE.Color('#ff4d6d')];
+      for (let index = 0; index < count; index++) {
+        const point = new THREE.Vector3().randomDirection().multiplyScalar(9 + Math.random() * 20);
+        point.y *= .76;
+        positions.set([point.x, point.y, point.z], index * 3);
+        const chance = Math.random();
+        const palette = chance < .56 ? white : chance < .9 ? gold : red;
+        const color = palette[Math.floor(Math.random() * palette.length)];
+        colors.set([color.r, color.g, color.b], index * 3);
+        sizes[index] = 3.4 + Math.random() * 4.8;
+        seeds[index] = Math.random() * 100;
+      }
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geometry.setAttribute('aColor', new THREE.BufferAttribute(colors, 3));
+      geometry.setAttribute('aSize', new THREE.BufferAttribute(sizes, 1));
+      geometry.setAttribute('aSeed', new THREE.BufferAttribute(seeds, 1));
+      const material = new THREE.ShaderMaterial({
+        transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+        uniforms: { uTime: { value: 0 }, uPixel: { value: renderer.getPixelRatio() } },
+        vertexShader: `uniform float uTime;uniform float uPixel;attribute vec3 aColor;attribute float aSize;attribute float aSeed;varying vec3 vColor;varying float vTwinkle;void main(){vec3 p=position+vec3(sin(uTime*.1+aSeed),cos(uTime*.08+aSeed*1.4),sin(uTime*.07+aSeed*.6))*.12;vec4 mv=modelViewMatrix*vec4(p,1.);gl_PointSize=aSize*uPixel*(86./-mv.z);gl_Position=projectionMatrix*mv;vColor=aColor;vTwinkle=.76+.24*sin(uTime*.72+aSeed*2.1);}`,
+        fragmentShader: `varying vec3 vColor;varying float vTwinkle;void main(){vec2 uv=abs(gl_PointCoord*2.-1.);float horizontal=exp(-uv.y*31.)*exp(-uv.x*1.9);float vertical=exp(-uv.x*31.)*exp(-uv.y*1.9);float core=exp(-length(uv)*9.2);float glow=exp(-length(uv)*3.)*.32;float a=min(1.,horizontal+vertical+core+glow)*vTwinkle;gl_FragColor=vec4(vColor*(a+core),a*.9);}`
+      });
+      const points = new THREE.Points(geometry, material);
+      points.renderOrder = 1;
+      scene.add(points);
+      return material;
+    }
+    const heartOuterMaterial = particleVolume(1800, 'outer');
+    const heartLobeMaterial = particleVolume(780, 'lobe');
+    const heartNotchMaterial = particleVolume(380, 'notch');
+    const heartTipMaterial = particleVolume(480, 'tip');
+    const heartMiddleMaterial = particleVolume(720, 'middle');
+    const heartCoreMaterial = particleVolume(180, 'core');
+    const farStarMaterial = particleVolume(3000, 'far');
+    const midStarMaterial = particleVolume(1200, 'mid');
+    const nearStarMaterial = particleVolume(90, 'near');
+    const crossStarMaterial = crossStarField(64);
 
     const composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
@@ -284,7 +333,7 @@
       updateCards(delta);
       heartOuterMaterial.uniforms.uTime.value = elapsed; heartLobeMaterial.uniforms.uTime.value = elapsed; heartNotchMaterial.uniforms.uTime.value = elapsed; heartTipMaterial.uniforms.uTime.value = elapsed;
       heartMiddleMaterial.uniforms.uTime.value = elapsed; heartCoreMaterial.uniforms.uTime.value = elapsed;
-      farStarMaterial.uniforms.uTime.value = elapsed; midStarMaterial.uniforms.uTime.value = elapsed; nearStarMaterial.uniforms.uTime.value = elapsed;
+      farStarMaterial.uniforms.uTime.value = elapsed; midStarMaterial.uniforms.uTime.value = elapsed; nearStarMaterial.uniforms.uTime.value = elapsed; crossStarMaterial.uniforms.uTime.value = elapsed;
       heartParticleMix = THREE.MathUtils.damp(heartParticleMix, photoMode === 'floating' ? .08 : photoMode === 'focus' ? .42 : 1, 3.8, delta);
       heartOuterMaterial.uniforms.uOpacity.value = heartParticleMix; heartLobeMaterial.uniforms.uOpacity.value = heartParticleMix; heartNotchMaterial.uniforms.uOpacity.value = heartParticleMix; heartTipMaterial.uniforms.uOpacity.value = heartParticleMix;
       heartMiddleMaterial.uniforms.uOpacity.value = heartParticleMix * .78; heartCoreMaterial.uniforms.uOpacity.value = heartParticleMix * .46;
